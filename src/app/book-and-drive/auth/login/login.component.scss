@@ -1,0 +1,38 @@
+@import '../../../../assets/mixins.scss';
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .form-container {
+    margin-top: 100px;
+
+    .form-card {
+      width: 350px;
+
+      .form-card-header {
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .form-field {
+        width: 100%;
+        margin-bottom: 5px;
+      }
+
+      .submit-button {
+        width: 100%;
+      }
+
+      .hr-sect {
+        @include hr-text-between();
+      }
+
+      .login-option {
+        width: 100%;
+        margin-bottom: 8px;
+      }
+    }
+  }
+}
