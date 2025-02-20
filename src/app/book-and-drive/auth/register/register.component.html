@@ -52,12 +52,15 @@
               <mat-error>Password should contain at least 8 characters</mat-error>
             }
           </mat-form-field>
+          @if (errorMessage.length) {
+            <mat-error>*{{ errorMessage }}</mat-error>
+          }
           <button
             mat-flat-button
             class="submit-button"
             type="submit"
             (click)="onRegister()"
-            [disabled]="!form.valid"
+            [disabled]="!form.valid || isLoading"
           >
             Register
           </button>

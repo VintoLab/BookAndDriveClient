@@ -7,6 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { NgxMaskDirective, provideNgxMask} from 'ngx-mask'
 import { RegisterModel } from '../models/register.model';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -28,11 +30,15 @@ import { RegisterModel } from '../models/register.model';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
+  authService = inject(AuthService);
+  router = inject(Router);
   fb = inject(FormBuilder);
 
   form: FormGroup
   phoneNumberInputPrefix: string = '+380';
   isPasswordHidden = true;
+  isLoading = false;
+  errorMessage = '';
 
   constructor() {
     this.form = this.fb.group({
@@ -45,9 +51,20 @@ export class RegisterComponent {
   }
 
   onRegister() {
+    this.isLoading = true;
     const inputtedData: RegisterModel = this.form.value;
     inputtedData.phoneNumber = this.processInputtedPhoneNumber(inputtedData.phoneNumber);
-    console.log(inputtedData);
+
+    this.authService.register(inputtedData).subscribe({
+      next: () => {
+        this.isLoading = false;
+        this.router.navigate(['/auth/login']);
+      },
+      error: (error) => {
+        this.isLoading = false;
+        this.errorMessage = error.error;
+      }
+    });
   }
 
   private processInputtedPhoneNumber(phoneNumber: string): string {
