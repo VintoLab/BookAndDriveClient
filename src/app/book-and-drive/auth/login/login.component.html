@@ -1,1 +1,65 @@
-<p>login works!</p>
+<div class="container">
+  <div class="form-container">
+    <mat-card class="form-card" appearance="outlined">
+      <mat-card-header class="form-card-header">
+        <mat-card-title>Login</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="form">
+          <mat-form-field class="form-field" appearance="outline">
+            <input
+              matInput
+              placeholder="Email"
+              formControlName="email"
+            />
+            @if (form.controls['email'].hasError('email')) {
+              <mat-error>Invalid email</mat-error>
+            }
+            <mat-icon matPrefix>email</mat-icon>
+          </mat-form-field>
+          <mat-form-field class="form-field" appearance="outline">
+            <input
+              matInput
+              placeholder="Password"
+              [type]="isPasswordHidden ? 'password' : 'text'"
+              formControlName="password"
+            />
+            <mat-icon matPrefix>key</mat-icon>
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="isPasswordHidden = !isPasswordHidden"
+              type="button"
+            >
+              <mat-icon>{{isPasswordHidden ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            @if (form.controls['password'].hasError('minlength')) {
+              <mat-error>Password should contain at least 8 characters</mat-error>
+            }
+          </mat-form-field>
+          @if (errorMessage.length) {
+            <mat-error>*{{ errorMessage }}</mat-error>
+          }
+          <button
+            mat-flat-button
+            class="submit-button"
+            type="submit"
+            (click)="onLogin()"
+            [disabled]="!form.valid || isLoading"
+          >
+            Log in
+          </button>
+          <div class="hr-sect">or</div>
+          <button mat-flat-button class="login-option">
+            google
+            <mat-icon>facebook</mat-icon>
+          </button>
+          <button mat-flat-button class="login-option">
+            facebook
+            <mat-icon>facebook</mat-icon>
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
