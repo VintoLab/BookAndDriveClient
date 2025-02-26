@@ -1,0 +1,24 @@
+<mat-toolbar class="app-header">
+  <span>Book-and-Drive</span>
+  <span class="spacer"></span>
+  @if (token) {
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/profile">
+        <mat-icon>account_circle</mat-icon>
+        Profile
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Log out
+      </button>
+    </mat-menu>
+  }
+  @else {
+    <button mat-icon-button routerLink="/auth/login">
+      <mat-icon>login</mat-icon>
+    </button>
+  }
+</mat-toolbar>
