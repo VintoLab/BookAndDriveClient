@@ -1,0 +1,37 @@
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+swiper-container::part(button-prev) {
+  color: rgb(145, 145, 145);
+}
+
+swiper-container::part(button-next) {
+  color: rgb(145, 145, 145);
+}
+
+
+@media (max-width: 768px) {
+  swiper-container::part(button-prev) {
+    height: 35px;
+    width: 19px;
+  }
+
+  swiper-container::part(button-next) {
+    height: 35px;
+    width: 19px;
+  }
+}
+
+@media (max-width: 425px) {
+  swiper-container::part(button-prev) {
+    height: 40px;
+    width: 11px;
+  }
+
+  swiper-container::part(button-next) {
+    height: 40px;
+    width: 11px;
+  }
+}
