@@ -1,0 +1,41 @@
+.main-container {
+  .navigate-button-wrapper {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-top: -45px;
+    z-index: 1;
+
+    .navigate-button {
+      height: 75px;
+      font-size: 26px;
+    }
+  }
+}
+
+
+@media (max-width: 768px) {
+  .main-container {
+    .navigate-button-wrapper {
+      margin-top: -40px;
+  
+      .navigate-button {
+        height: 60px;
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .main-container {
+    .navigate-button-wrapper {
+      margin-top: -33px;
+  
+      .navigate-button {
+        height: 50px;
+        font-size: 16px;
+      }
+    }
+  }
+}
