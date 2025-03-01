@@ -3,11 +3,11 @@
   <span class="spacer"></span>
   @if (token) {
     <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>menu</mat-icon>
+      <mat-icon>account_circle</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item routerLink="/profile">
-        <mat-icon>account_circle</mat-icon>
+        <mat-icon>person</mat-icon>
         Profile
       </button>
       <button mat-menu-item (click)="logout()">
