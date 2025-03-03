@@ -1,0 +1,37 @@
+.container {
+  .card {
+    gap: 15px;
+    background-color: white;
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      .add-button-wrapper {
+        display: flex;
+        justify-content: end;
+
+        .add-button {
+          color: black;
+  
+          .add-icon {
+            color: green;
+          }
+        }
+      }
+
+      .table {
+        background-color: white;
+
+        .mat-column-actions {
+          text-align: end;
+
+          .delete-icon {
+            color: red;
+          }
+        }
+      }
+    }
+  }
+}
