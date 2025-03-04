@@ -1,0 +1,47 @@
+@if (isEditMode()) {
+  <h2 mat-dialog-title>Editing Extras</h2>
+} @else {
+  <h2 mat-dialog-title>Adding Extras</h2>
+}
+<mat-dialog-content class="dialog-content">
+  <form [formGroup]="form">
+    <div class="fields-container">
+      <mat-form-field appearance="outline" floatLabel="always" class="name-field">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" floatLabel="always" class="price-field">
+        <mat-label>Price</mat-label>
+        <input matInput type="number" class="right-align" placeholder="0" formControlName="price" />
+        <span matTextSuffix>&nbsp;$</span>
+        @if (form.controls['price'].hasError('min')) {
+          <mat-error>Price can't be 0 or negative</mat-error>
+        }
+      </mat-form-field>
+    </div>
+  </form>
+  @if (responseErrorMessage) {
+    <mat-error>{{responseErrorMessage}}</mat-error>
+  }
+</mat-dialog-content>
+<mat-dialog-actions>
+  @if (isEditMode()) {
+    <button 
+      mat-button 
+      [disabled]="!form.valid || !form.touched"
+      (click)="onEdit()"
+    >
+      Edit
+    </button>
+  } @else {
+    <button 
+      mat-button 
+      [disabled]="!form.valid"
+      (click)="onAdd()"
+    >
+      Add
+    </button>
+  }
+
+  <button mat-button (click)="onCancel()">Cancel</button>
+</mat-dialog-actions>
