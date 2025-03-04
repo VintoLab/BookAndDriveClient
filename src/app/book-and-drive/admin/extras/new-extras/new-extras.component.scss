@@ -1,0 +1,27 @@
+.dialog-content {
+  height: 110px;
+  padding-top: 10px !important;
+
+  .fields-container {
+    display: flex;
+    gap: 10px;
+
+    input.right-align::-webkit-outer-spin-button,
+    input.right-align::-webkit-inner-spin-button {
+      display: none;
+    }
+
+    .name-field {
+      width: 300px;
+    }
+
+    .price-field {
+      width: 150px;
+    }
+
+    .right-align {
+      text-align: right;
+    }
+  }
+
+}

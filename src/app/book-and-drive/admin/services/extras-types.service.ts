@@ -3,6 +3,7 @@ import { environment } from "../../../../environments/environment.development";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { ExtrasType } from "../models/extras-type.model";
+import { ExtrasTypeDTO } from "../models/extras-type.dto";
 
 @Injectable({
   providedIn: "root"
@@ -14,6 +15,14 @@ export class ExtrasTypesService {
 
   getExtrasTypes(): Observable<ExtrasType[]> {
     return this.http.get<ExtrasType[]>(`${this.url}/extrastypes`)
+  }
+
+  create(extrasType: ExtrasTypeDTO) {
+    return this.http.post(`${this.url}/extrastypes`, extrasType);
+  }
+
+  update(id: number, extrasType: ExtrasTypeDTO) {
+    return this.http.put(`${this.url}/extrastypes/${id}`, extrasType);
   }
 
   delete(id: number) {
