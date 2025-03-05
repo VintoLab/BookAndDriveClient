@@ -5,11 +5,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ExtrasTypesService } from '../services/extras-types.service';
-import { ExtrasType } from '../models/extras-type.model';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../../../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { NewExtrasComponent } from './new-extras/new-extras.component';
+import { ExtrasType } from '../models/extras-type/extras-type.model';
 
 
 @Component({
