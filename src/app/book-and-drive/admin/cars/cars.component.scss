@@ -1,0 +1,36 @@
+.container {
+  .card {
+    gap: 30px;
+    background-color: white;
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      .tools-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .filtering-container {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        
+        .add-button-wrapper {
+  
+          .add-button {
+            color: black;
+    
+            .add-icon {
+              color: green;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -2,8 +2,8 @@ import { inject, Injectable } from "@angular/core";
 import { environment } from "../../../../environments/environment.development";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { ExtrasType } from "../models/extras-type.model";
-import { ExtrasTypeDTO } from "../models/extras-type.dto";
+import { ExtrasType } from "../models/extras-type/extras-type.model";
+import { ExtrasTypeDTO } from "../models/extras-type/extras-type.dto";
 
 @Injectable({
   providedIn: "root"
