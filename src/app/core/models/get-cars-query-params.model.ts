@@ -3,7 +3,7 @@ import { CarTransmission } from "../enums/car-transmission.enum";
 import { CarType } from "../enums/car-type.enum";
 
 export interface GetCarsQueryParams {
-  transmission: CarTransmission | string,
-  type: CarType | string,
-  status: CarStatus | string,
+  transmission: CarTransmission | string;
+  type: CarType | string;
+  status: CarStatus | string;
 }

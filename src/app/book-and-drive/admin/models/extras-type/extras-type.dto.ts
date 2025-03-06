@@ -1,4 +1,4 @@
 export interface ExtrasTypeDTO {
-  name: string,
-  price: number
+  name: string;
+  price: number;
 }
