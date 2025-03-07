@@ -30,7 +30,7 @@ export class ExtrasComponent implements OnInit {
   extrasTypesService = inject(ExtrasTypesService);
 
   displayedColumns: string[] = ['position', 'name', 'price', 'actions'];
-  extrasTypes$: Observable<ExtrasType[]> = new Observable;
+  extrasTypes$: Observable<ExtrasType[]> = new Observable();
 
   ngOnInit() {
     this.extrasTypes$ = this.extrasTypesService.getExtrasTypes();
