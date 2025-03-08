@@ -11,5 +11,5 @@ export interface CarDTO {
   vin: string;
   price: number;
   status: CarStatus;
-  photo: File;
+  photo: File | null;
 }

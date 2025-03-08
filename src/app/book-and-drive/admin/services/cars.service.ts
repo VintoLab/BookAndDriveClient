@@ -20,4 +20,8 @@ export class CarsService {
 
     return this.http.get<Car[]>(`${this.url}/car`, { params: httpParams });
   }
+
+  delete(id: number) {
+    return this.http.delete(`${this.url}/car/${id}`);
+  }
 }

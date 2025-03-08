@@ -41,7 +41,7 @@ export class ExtrasComponent implements OnInit {
       if (res.confirmed) {
         this.extrasTypes$ = this.extrasTypesService.getExtrasTypes();
       }
-    })
+    });
   }
 
   onEdit(extras: ExtrasType) {
@@ -52,7 +52,7 @@ export class ExtrasComponent implements OnInit {
         if (res.confirmed) {
           this.extrasTypes$ = this.extrasTypesService.getExtrasTypes();
         }
-      })
+      });
   }
 
   onDelete(id: number) {
@@ -65,7 +65,7 @@ export class ExtrasComponent implements OnInit {
         if (isConfirmed) {
           this.deleteExtraType(id);
         }
-      })
+      });
   }
 
   private deleteExtraType(id: number) {

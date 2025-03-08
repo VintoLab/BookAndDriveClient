@@ -13,6 +13,9 @@ import { CarsService } from '../services/cars.service';
 import { Observable } from 'rxjs';
 import { Car } from '../models/car/car.model';
 import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from '../../../shared/components/confirmation-dialog/confirmation-dialog.component';
+import { NewCarComponent } from './new-car/new-car.component';
 
 @Component({
   selector: 'app-cars',
@@ -31,6 +34,7 @@ import { CommonModule } from '@angular/common';
 })
 export class CarsComponent implements OnInit {
   carsService = inject(CarsService);
+  dialog = inject(MatDialog);
 
   CarTransmission = CarTransmission;
   carType = CarType;
@@ -67,14 +71,45 @@ export class CarsComponent implements OnInit {
   }
 
   onAdd() {
-    console.log('onAdd fired');
+    this.dialog.open(NewCarComponent, {
+      height: '550px',
+      width: '500px'
+    }).afterClosed()
+      .subscribe(res => {
+
+      });
   }
 
   onEdit(car: Car) {
-    console.log('onEdit fired', car);
+    this.dialog.open(NewCarComponent, {
+      data: car,
+      height: '550px',
+      width: '500px'
+    }).afterClosed()
+      .subscribe(res => {
+
+      });
   }
 
   onDelete(id: number) {
-    console.log('onDelete fired', id);
+    this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        message: 'Are you sure you want to delete this record?'
+      }
+    }).afterClosed()
+      .subscribe(isConfirmed => {
+        if (isConfirmed) {
+          this.deleteCar(id);
+        }
+      })
+  }
+
+  private deleteCar(id: number) {
+    this.carsService.delete(id).subscribe({
+      next: () => {
+        this.cars$ = this.carsService.getCars(this.queryParams);
+      },
+      error: (error) => console.log(error)
+    });
   }
 }

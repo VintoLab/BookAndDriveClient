@@ -1,0 +1,122 @@
+@if (isEditMode()) {
+  <h2 mat-dialog-title>Editing Car</h2>
+} @else {
+  <h2 mat-dialog-title>Adding Car</h2>
+}
+<mat-dialog-content class="dialog-content">
+  <form [formGroup]="form">
+    <div class="fields-container">
+      <div class="fields-row">
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Brand</mat-label>
+          <input matInput formControlName="brand" />
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Year</mat-label>
+          <input matInput type="number" placeholder="0" formControlName="year" class="type-number" />
+          @if (form.controls['year'].hasError('max')) {
+            <mat-error>The year can't be in the future</mat-error>
+          } @else if (form.controls['year'].hasError('min')) {
+            <mat-error>Year is too early.</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <div class="fields-row">
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Seats</mat-label>
+          <input matInput type="number" placeholder="0" formControlName="seats" class="type-number"
+          />
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" floatLabel="always" [hintLabel]="'Should be ' + vinNumberLength + ' numbers'">
+          <mat-label>VIN</mat-label>
+          <input 
+            matInput 
+            formControlName="vin" 
+            [maxlength]="vinNumberLength"
+            [minlength]="vinNumberLength"
+            (input)="onVinNumberInputting($event)"
+          />
+          <mat-hint align="end">{{inputtedVinNumber.length}}/{{vinNumberLength}}</mat-hint>
+          @if (form.controls['vin'].hasError('pattern')) {
+            <mat-error>Only numbers are allowed</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <div class="fields-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Transmission</mat-label>
+          <mat-select formControlName="transmission">
+            <mat-option [value]="CarTransmission.Manual">Manual</mat-option>
+            <mat-option [value]="CarTransmission.Automatic">Automatic</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Type</mat-label>
+          <mat-select formControlName="type">
+            <mat-option [value]="carType.City">City</mat-option>
+            <mat-option [value]="carType.LargeCity">Large City</mat-option>
+            <mat-option [value]="carType.Electric">Electric</mat-option>
+            <mat-option [value]="carType.SmallVan">Small Van</mat-option>
+            <mat-option [value]="carType.LargeVan">Large Van</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      
+      <div class="fields-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status">
+            <mat-option [value]="carStatus.Available">Available</mat-option>
+            <mat-option [value]="carStatus.Booked">Booked</mat-option>
+            <mat-option [value]="carStatus.Service">Service</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" floatLabel="always" class="price-field">
+          <mat-label>Price</mat-label>
+          <span matTextPrefix="">$&nbsp;</span>
+          <input matInput type="number" placeholder="0" formControlName="price" class="type-number" />
+        </mat-form-field>
+      </div>
+
+      <div class="fields-row">
+        <div class="input-file-container">
+          <label for="#">Image</label>
+          <div>
+            <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+            <input hidden (change)="onFileSelected($event)" #fileInput type="file">
+            <span class="file-name">{{selectedFile?.name}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  @if (responseErrorMessage) {
+    <mat-error>{{responseErrorMessage}}</mat-error>
+  }
+</mat-dialog-content>
+<mat-dialog-actions>
+  @if (isEditMode()) {
+    <button 
+      mat-button 
+      [disabled]="!form.valid || !form.touched"
+      (click)="onEdit()"
+    >
+      Edit
+    </button>
+  } @else {
+    <button 
+      mat-button 
+      [disabled]="!form.valid"
+      (click)="onAdd()"
+    >
+      Add
+    </button>
+  }
+  <button mat-button (click)="onCancel()">Cancel</button>
+</mat-dialog-actions>
