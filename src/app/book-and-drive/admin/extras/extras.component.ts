@@ -73,9 +73,7 @@ export class ExtrasComponent implements OnInit {
       next: () => {
         this.extrasTypes$ = this.extrasTypesService.getExtrasTypes();
       },
-      error: (error) => {
-        console.log(error);
-      }
+      error: (error) => console.log(error)
     });
   }
 }

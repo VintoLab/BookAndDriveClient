@@ -6,13 +6,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Car } from '../../models/car/car.model';
-import { ExtrasTypesService } from '../../services/extras-types.service';
 import { CarTransmission } from '../../../../core/enums/car-transmission.enum';
 import { CarStatus } from '../../../../core/enums/car-status.enum';
 import { CarType } from '../../../../core/enums/car-type.enum';
 import { MatSelectModule } from '@angular/material/select';
 import { Regexp } from '../../../../core/constants/regexp';
 import { CarDTO } from '../../models/car/car.dto';
+import { CarsService } from '../../services/cars.service';
 
 @Component({
   selector: 'app-new-car',
@@ -32,7 +32,7 @@ import { CarDTO } from '../../models/car/car.dto';
 export class NewCarComponent {
   readonly dialogRef = inject(MatDialogRef<NewCarComponent>);
   data: Car = inject(MAT_DIALOG_DATA);
-  carsService = inject(ExtrasTypesService);
+  carsService = inject(CarsService);
   fb = inject(FormBuilder);
 
   readonly vinNumberLength = 17;
@@ -62,14 +62,14 @@ export class NewCarComponent {
 
     if (this.isEditMode()) {
       this.form.setValue({
-        type: this.data.carTypeName,
+        type: this.data.carTypeId,
         year: this.data.year,
         brand: this.data.brand,
         transmission: this.data.transmission,
         seats: this.data.seats,
         vin: this.data.vin,
         price: this.data.price,
-        status: this.data.carStatusName,
+        status: this.data.carStatusId,
         photo: this.data.photo,
       });
 
@@ -89,14 +89,29 @@ export class NewCarComponent {
     this.selectedFile = $event.target.files[0] ?? null;
   }
 
-  onEdit() {
-    console.log('onEdit fired');
-  }
-
   onAdd() {
+    this.responseErrorMessage = null;
     const car: CarDTO = this.form.value;
     car.photo = this.selectedFile;
-    console.log('car', car);
+
+    this.carsService.add(car).subscribe({
+      next: () => this.dialogRef.close({ confirmed: true }),
+      error: (error) => this.responseErrorMessage = error.error
+    });
+  }
+
+  onEdit() {
+    this.responseErrorMessage = null;
+    const car: CarDTO = this.form.value;
+
+    if (this.selectedFile) {
+      car.photo = this.selectedFile;
+    }
+
+    this.carsService.update(this.data.id, car).subscribe({
+      next: () => this.dialogRef.close({ confirmed: true }),
+      error: (error) => this.responseErrorMessage = error.error
+    });
   }
 
   onCancel() {

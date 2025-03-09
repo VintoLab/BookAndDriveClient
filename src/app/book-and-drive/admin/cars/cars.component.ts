@@ -76,7 +76,9 @@ export class CarsComponent implements OnInit {
       width: '500px'
     }).afterClosed()
       .subscribe(res => {
-
+        if (res.confirmed) {
+          this.cars$ = this.carsService.getCars(this.queryParams);
+        }
       });
   }
 
@@ -87,7 +89,9 @@ export class CarsComponent implements OnInit {
       width: '500px'
     }).afterClosed()
       .subscribe(res => {
-
+        if (res.confirmed) {
+          this.cars$ = this.carsService.getCars(this.queryParams);
+        }
       });
   }
 

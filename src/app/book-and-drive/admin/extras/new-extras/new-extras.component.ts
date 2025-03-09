@@ -56,12 +56,8 @@ export class NewExtrasComponent {
     const extras: ExtrasTypeDTO = this.form.value;
 
     this.extrasTypesService.create(extras).subscribe({
-      next: () => {
-        this.dialogRef.close({ confirmed: true });
-      },
-      error: (error) => {
-        this.responseErrorMessage = error.error;
-      }
+      next: () => this.dialogRef.close({ confirmed: true }),
+      error: (error) => this.responseErrorMessage = error.error
     });
   }
 
@@ -70,12 +66,8 @@ export class NewExtrasComponent {
     const extras: ExtrasTypeDTO = this.form.value;
 
     this.extrasTypesService.update(this.data.id, extras).subscribe({
-      next: () => {
-        this.dialogRef.close({ confirmed: true });
-      },
-      error: (error) => {
-        this.responseErrorMessage = error.error;
-      }
+      next: () => this.dialogRef.close({ confirmed: true }),
+      error: (error) => this.responseErrorMessage = error.error
     });
   }
 
