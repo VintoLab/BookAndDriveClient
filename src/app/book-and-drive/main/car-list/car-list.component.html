@@ -1,1 +1,62 @@
-<p>car-list works!</p>
+<div class="container">
+  <div class="title">
+    <h2>Cars</h2>
+  </div>
+
+  <div class="filters-container">
+    <span>Filter by: </span>
+
+    <mat-chip-listbox hideSingleSelectionIndicator>
+      <mat-chip-option class="custom-chip">
+        <div class="chip-text">
+          <mat-icon>directions_car</mat-icon>
+          {{ carTransmission.Automatic }}
+        </div>
+      </mat-chip-option>
+      <mat-chip-option class="custom-chip">
+        <div class="chip-text">
+          <mat-icon>directions_car</mat-icon>
+          {{ carTransmission.Manual }}
+        </div>
+      </mat-chip-option>
+    </mat-chip-listbox>
+
+    <mat-chip-listbox hideSingleSelectionIndicator>
+      <mat-chip-option class="custom-chip">
+        <div class="chip-text">
+          <mat-icon>directions_car</mat-icon>
+          City
+        </div>
+      </mat-chip-option>
+      <mat-chip-option class="custom-chip">
+        <div class="chip-text">
+          <mat-icon>directions_car</mat-icon>
+          Large City
+        </div>
+      </mat-chip-option>
+      <mat-chip-option class="custom-chip">
+        <div class="chip-text">
+          <mat-icon>electric_car</mat-icon>
+          Electric
+        </div>
+      </mat-chip-option>
+      <mat-chip-option class="custom-chip">
+        <div class="chip-text">
+          <mat-icon>airport_shuttle</mat-icon>
+          Small Van
+        </div>
+      </mat-chip-option>
+      <mat-chip-option class="custom-chip">
+        <div class="chip-text">
+          <mat-icon>airport_shuttle</mat-icon>
+          Large Van
+        </div>
+      </mat-chip-option>
+      
+    </mat-chip-listbox>
+  </div>
+
+  <div class="cars-container">
+
+  </div>
+</div>
