@@ -11,14 +11,14 @@
       <mat-chip-option class="custom-chip" [value]="carTransmission.Automatic" (selectionChange)="onCarTransmissionChange($event)">
         <div class="chip-text">
           <mat-icon>directions_car</mat-icon>
-          {{ carTransmission.Automatic }}
+          Automatic
         </div>
       </mat-chip-option>
 
       <mat-chip-option class="custom-chip" [value]="carTransmission.Manual" (selectionChange)="onCarTransmissionChange($event)">
         <div class="chip-text">
           <mat-icon>directions_car</mat-icon>
-          {{ carTransmission.Manual }}
+          Manual
         </div>
       </mat-chip-option>
     </mat-chip-listbox>
@@ -62,6 +62,40 @@
     </mat-chip-listbox>
   </div>
   <div class="cars-container">
-    <p>{{ queryParams | json}}</p>
+    @if (cars.length) {
+      @for (item of cars; track $index) {
+        <mat-card class="card" appearance="raised">
+          <img mat-card-image class="card-image"  [src]="'data:image/jpg;base64,' + item.photo" alt="Car">
+          <mat-card-content class="card-content">
+            <div class="specs-row">
+              <div class="spec-item">
+                <mat-icon>directions_car</mat-icon>
+                <span>{{ item.transmission }}</span>
+              </div>
+              <div class="spec-item">
+                <mat-icon>calendar_month</mat-icon>
+                <span>{{ item.year }}</span>
+              </div>
+              <div class="spec-item">
+                <mat-icon>airline_seat_recline_normal</mat-icon>
+                <span>{{ item.seats }}</span>
+              </div>
+            </div>
+            <div class="name-row">
+              <span>{{ item.brand }}</span>
+              <span>{{ item.price | currency : 'USD' }}</span>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button class="choose-button">Choose</button>
+          </mat-card-actions>
+        </mat-card>
+      }
+    } 
+    @else {
+      <div class="no-data-container">
+        <span>No cars found</span>
+      </div>
+    }
   </div>
 </div>
