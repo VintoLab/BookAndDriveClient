@@ -6,14 +6,16 @@
   <div class="filters-container">
     <span>Filter by: </span>
 
-    <mat-chip-listbox hideSingleSelectionIndicator>
-      <mat-chip-option class="custom-chip">
+    <!-- filter by transmission -->
+    <mat-chip-listbox hideSingleSelectionIndicator >
+      <mat-chip-option class="custom-chip" [value]="carTransmission.Automatic" (selectionChange)="onCarTransmissionChange($event)">
         <div class="chip-text">
           <mat-icon>directions_car</mat-icon>
           {{ carTransmission.Automatic }}
         </div>
       </mat-chip-option>
-      <mat-chip-option class="custom-chip">
+
+      <mat-chip-option class="custom-chip" [value]="carTransmission.Manual" (selectionChange)="onCarTransmissionChange($event)">
         <div class="chip-text">
           <mat-icon>directions_car</mat-icon>
           {{ carTransmission.Manual }}
@@ -21,42 +23,45 @@
       </mat-chip-option>
     </mat-chip-listbox>
 
+    <!-- filter by type -->
     <mat-chip-listbox hideSingleSelectionIndicator>
-      <mat-chip-option class="custom-chip">
+      <mat-chip-option class="custom-chip" [value]="carType.City" (selectionChange)="onCarTypeChange($event)">
         <div class="chip-text">
           <mat-icon>directions_car</mat-icon>
           City
         </div>
       </mat-chip-option>
-      <mat-chip-option class="custom-chip">
+
+      <mat-chip-option class="custom-chip" [value]="carType.LargeCity" (selectionChange)="onCarTypeChange($event)">
         <div class="chip-text">
           <mat-icon>directions_car</mat-icon>
           Large City
         </div>
       </mat-chip-option>
-      <mat-chip-option class="custom-chip">
+
+      <mat-chip-option class="custom-chip" [value]="carType.Electric" (selectionChange)="onCarTypeChange($event)">
         <div class="chip-text">
           <mat-icon>electric_car</mat-icon>
           Electric
         </div>
       </mat-chip-option>
-      <mat-chip-option class="custom-chip">
+
+      <mat-chip-option class="custom-chip" [value]="carType.SmallVan" (selectionChange)="onCarTypeChange($event)">
         <div class="chip-text">
           <mat-icon>airport_shuttle</mat-icon>
           Small Van
         </div>
       </mat-chip-option>
-      <mat-chip-option class="custom-chip">
+
+      <mat-chip-option class="custom-chip" [value]="carType.LargeVan" (selectionChange)="onCarTypeChange($event)">
         <div class="chip-text">
           <mat-icon>airport_shuttle</mat-icon>
           Large Van
         </div>
       </mat-chip-option>
-      
     </mat-chip-listbox>
   </div>
-
   <div class="cars-container">
-
+    <p>{{ queryParams | json}}</p>
   </div>
 </div>

@@ -9,7 +9,7 @@ import { CarType } from '../../../core/enums/car-type.enum';
 import { CarStatus } from '../../../core/enums/car-status.enum';
 import { CarTransmission } from '../../../core/enums/car-transmission.enum';
 import { GetCarsQueryParams } from '../../../core/models/get-cars-query-params.model';
-import { CarsService } from '../services/cars.service';
+import { CarsService } from '../../../shared/services/cars.service';
 import { Observable } from 'rxjs';
 import { Car } from '../models/car/car.model';
 import { CommonModule } from '@angular/common';

@@ -12,7 +12,7 @@ import { CarType } from '../../../../core/enums/car-type.enum';
 import { MatSelectModule } from '@angular/material/select';
 import { Regexp } from '../../../../core/constants/regexp';
 import { CarDTO } from '../../models/car/car.dto';
-import { CarsService } from '../../services/cars.service';
+import { CarsService } from '../../../../shared/services/cars.service';
 
 @Component({
   selector: 'app-new-car',

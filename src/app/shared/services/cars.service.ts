@@ -1,10 +1,10 @@
 import { inject, Injectable } from "@angular/core";
-import { environment } from "../../../../environments/environment.development";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { Car } from "../models/car/car.model";
-import { GetCarsQueryParams } from "../../../core/models/get-cars-query-params.model";
-import { CarDTO } from "../models/car/car.dto";
+import { environment } from "../../../environments/environment.development";
+import { GetCarsQueryParams } from "../../core/models/get-cars-query-params.model";
+import { Car } from "../../book-and-drive/admin/models/car/car.model";
+import { CarDTO } from "../../book-and-drive/admin/models/car/car.dto";
 
 @Injectable({
   providedIn: "root"
