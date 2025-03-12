@@ -6,8 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef, } from '@angular/material/dialog';
 import { ExtrasTypesService } from '../../services/extras-types.service';
-import { ExtrasType } from '../../models/extras-type.model';
-import { ExtrasTypeDTO } from '../../models/extras-type.dto';
+import { ExtrasType } from '../../models/extras-type/extras-type.model';
+import { ExtrasTypeDTO } from '../../models/extras-type/extras-type.dto';
 
 
 @Component({
@@ -56,12 +56,8 @@ export class NewExtrasComponent {
     const extras: ExtrasTypeDTO = this.form.value;
 
     this.extrasTypesService.create(extras).subscribe({
-      next: () => {
-        this.dialogRef.close({ confirmed: true });
-      },
-      error: (error) => {
-        this.responseErrorMessage = error.error;
-      }
+      next: () => this.dialogRef.close({ confirmed: true }),
+      error: (error) => this.responseErrorMessage = error.error
     });
   }
 
@@ -70,12 +66,8 @@ export class NewExtrasComponent {
     const extras: ExtrasTypeDTO = this.form.value;
 
     this.extrasTypesService.update(this.data.id, extras).subscribe({
-      next: () => {
-        this.dialogRef.close({ confirmed: true });
-      },
-      error: (error) => {
-        this.responseErrorMessage = error.error;
-      }
+      next: () => this.dialogRef.close({ confirmed: true }),
+      error: (error) => this.responseErrorMessage = error.error
     });
   }
 

@@ -1,1 +1,101 @@
-<p>car-list works!</p>
+<div class="container">
+  <div class="title">
+    <h2>Cars</h2>
+  </div>
+
+  <div class="filters-container">
+    <span>Filter by: </span>
+
+    <!-- filter by transmission -->
+    <mat-chip-listbox hideSingleSelectionIndicator >
+      <mat-chip-option class="custom-chip" [value]="carTransmission.Automatic" (selectionChange)="onCarTransmissionChange($event)">
+        <div class="chip-text">
+          <mat-icon>directions_car</mat-icon>
+          Automatic
+        </div>
+      </mat-chip-option>
+
+      <mat-chip-option class="custom-chip" [value]="carTransmission.Manual" (selectionChange)="onCarTransmissionChange($event)">
+        <div class="chip-text">
+          <mat-icon>directions_car</mat-icon>
+          Manual
+        </div>
+      </mat-chip-option>
+    </mat-chip-listbox>
+
+    <!-- filter by type -->
+    <mat-chip-listbox hideSingleSelectionIndicator>
+      <mat-chip-option class="custom-chip" [value]="carType.City" (selectionChange)="onCarTypeChange($event)">
+        <div class="chip-text">
+          <mat-icon>directions_car</mat-icon>
+          City
+        </div>
+      </mat-chip-option>
+
+      <mat-chip-option class="custom-chip" [value]="carType.LargeCity" (selectionChange)="onCarTypeChange($event)">
+        <div class="chip-text">
+          <mat-icon>directions_car</mat-icon>
+          Large City
+        </div>
+      </mat-chip-option>
+
+      <mat-chip-option class="custom-chip" [value]="carType.Electric" (selectionChange)="onCarTypeChange($event)">
+        <div class="chip-text">
+          <mat-icon>electric_car</mat-icon>
+          Electric
+        </div>
+      </mat-chip-option>
+
+      <mat-chip-option class="custom-chip" [value]="carType.SmallVan" (selectionChange)="onCarTypeChange($event)">
+        <div class="chip-text">
+          <mat-icon>airport_shuttle</mat-icon>
+          Small Van
+        </div>
+      </mat-chip-option>
+
+      <mat-chip-option class="custom-chip" [value]="carType.LargeVan" (selectionChange)="onCarTypeChange($event)">
+        <div class="chip-text">
+          <mat-icon>airport_shuttle</mat-icon>
+          Large Van
+        </div>
+      </mat-chip-option>
+    </mat-chip-listbox>
+  </div>
+  <div class="cars-container">
+    @if (cars.length) {
+      @for (item of cars; track $index) {
+        <mat-card class="card" appearance="raised">
+          <img mat-card-image class="card-image"  [src]="'data:image/jpg;base64,' + item.photo" alt="Car">
+          <mat-card-content class="card-content">
+            <div class="specs-row">
+              <div class="spec-item">
+                <mat-icon>directions_car</mat-icon>
+                <span>{{ item.transmission }}</span>
+              </div>
+              <div class="spec-item">
+                <mat-icon>calendar_month</mat-icon>
+                <span>{{ item.year }}</span>
+              </div>
+              <div class="spec-item">
+                <mat-icon>airline_seat_recline_normal</mat-icon>
+                <span>{{ item.seats }}</span>
+              </div>
+            </div>
+            <div class="name-row">
+              <span>{{ item.brand }}</span>
+              <span>{{ item.price | currency : 'USD' }}</span>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button class="choose-button">Choose</button>
+          </mat-card-actions>
+        </mat-card>
+      }
+    } 
+    @else {
+      <div class="no-data-container">
+        <span>No cars found</span>
+      </div>
+    }
+  </div>
+</div>

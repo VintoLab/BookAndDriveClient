@@ -1,1 +1,137 @@
-<p>cars works!</p>
+<div class="container">
+  <mat-card class="card" appearance="raised">
+    <mat-card-header>
+      <mat-card-title>Cars</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="card-content">
+      <div class="tools-container">
+        <div class="filtering-container">
+          <p>Filtering:</p>
+
+          <!-- filtering by Car Transmissions -->
+          <mat-form-field appearance="outline" class="dense-2">
+            <mat-label>Transmission</mat-label>
+            <mat-select (selectionChange)="onCarTransmissionChange($event.value)">
+              <mat-option value="">None</mat-option>
+              <mat-option [value]="CarTransmission.Manual">Manual</mat-option>
+              <mat-option [value]="CarTransmission.Automatic">Automatic</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- filtering by Car Types -->
+          <mat-form-field appearance="outline" class="dense-2">
+            <mat-label>Type</mat-label>
+            <mat-select (selectionChange)="onCarTypeChange($event.value)">
+              <mat-option value="">None</mat-option>
+              <mat-option [value]="carType.City">City</mat-option>
+              <mat-option [value]="carType.LargeCity">Large City</mat-option>
+              <mat-option [value]="carType.Electric">Electric</mat-option>
+              <mat-option [value]="carType.SmallVan">Small Van</mat-option>
+              <mat-option [value]="carType.LargeVan">Large Van</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- filtering by Car Statuses -->
+          <mat-form-field appearance="outline" class="dense-2">
+            <mat-label>Status</mat-label>
+            <mat-select (selectionChange)="onCarStatusChange($event.value)">
+              <mat-option value="">None</mat-option>
+              <mat-option [value]="carStatus.Available">Available</mat-option>
+              <mat-option [value]="carStatus.Booked">Booked</mat-option>
+              <mat-option [value]="carStatus.Service">Service</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="add-button-wrapper">
+          <button mat-stroked-button class="add-button" (click)="onAdd()">
+            <mat-icon class="add-icon">add_box</mat-icon>
+            Add Car
+          </button>
+        </div>
+      </div>
+      <div class="table-container">
+        <table mat-table [dataSource]="cars$" class="table">
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef>No.</th>
+            <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+          </ng-container>
+
+          <!-- Image Column -->
+          <ng-container matColumnDef="image">
+            <th mat-header-cell *matHeaderCellDef>Image</th>
+            <td mat-cell *matCellDef="let element">
+              <img [src]="'data:image/jpg;base64,' + element.photo" alt="Car" class="cell-image">
+
+            </td>
+          </ng-container>
+
+          <!-- Brand Column -->
+          <ng-container matColumnDef="brand">
+            <th mat-header-cell *matHeaderCellDef>Brand</th>
+            <td mat-cell *matCellDef="let element">{{element.brand}}</td>
+          </ng-container>
+
+          <!-- Year Column -->
+          <ng-container matColumnDef="year">
+            <th mat-header-cell *matHeaderCellDef>Year</th>
+            <td mat-cell *matCellDef="let element">{{element.year}}</td>
+          </ng-container>
+
+          <!-- Type Column -->
+          <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef>Type</th>
+            <td mat-cell *matCellDef="let element">{{element.carTypeName}}</td>
+          </ng-container>
+
+          <!-- Seats Column -->
+          <ng-container matColumnDef="seats">
+            <th mat-header-cell *matHeaderCellDef>Seats</th>
+            <td mat-cell *matCellDef="let element">{{element.seats}}</td>
+          </ng-container>
+
+          <!-- Transmission Column -->
+          <ng-container matColumnDef="transmission">
+            <th mat-header-cell *matHeaderCellDef>Transmission</th>
+            <td mat-cell *matCellDef="let element">{{element.transmission}}</td>
+          </ng-container>
+
+          <!-- VIN Column -->
+          <ng-container matColumnDef="vin">
+            <th mat-header-cell *matHeaderCellDef>VIN</th>
+            <td mat-cell *matCellDef="let element">{{element.vin}}</td>
+          </ng-container>
+
+          <!-- Price Column -->
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef>Price</th>
+            <td mat-cell *matCellDef="let element">{{element.price | currency : 'USD'}}</td>
+          </ng-container>
+
+          <!-- Status Column -->
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>Status</th>
+            <td mat-cell *matCellDef="let element">{{element.carStatusName}}</td>
+          </ng-container>
+
+          <!-- Actions Column -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button (click)="onEdit(element)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button class="delete-icon" (click)="onDelete(element.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="row"></tr>
+        </table>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

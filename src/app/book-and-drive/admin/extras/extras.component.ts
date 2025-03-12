@@ -5,11 +5,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ExtrasTypesService } from '../services/extras-types.service';
-import { ExtrasType } from '../models/extras-type.model';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../../../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { NewExtrasComponent } from './new-extras/new-extras.component';
+import { ExtrasType } from '../models/extras-type/extras-type.model';
 
 
 @Component({
@@ -30,7 +30,7 @@ export class ExtrasComponent implements OnInit {
   extrasTypesService = inject(ExtrasTypesService);
 
   displayedColumns: string[] = ['position', 'name', 'price', 'actions'];
-  extrasTypes$: Observable<ExtrasType[]> = new Observable;
+  extrasTypes$: Observable<ExtrasType[]> = new Observable();
 
   ngOnInit() {
     this.extrasTypes$ = this.extrasTypesService.getExtrasTypes();
@@ -41,7 +41,7 @@ export class ExtrasComponent implements OnInit {
       if (res.confirmed) {
         this.extrasTypes$ = this.extrasTypesService.getExtrasTypes();
       }
-    })
+    });
   }
 
   onEdit(extras: ExtrasType) {
@@ -52,7 +52,7 @@ export class ExtrasComponent implements OnInit {
         if (res.confirmed) {
           this.extrasTypes$ = this.extrasTypesService.getExtrasTypes();
         }
-      })
+      });
   }
 
   onDelete(id: number) {
@@ -65,7 +65,7 @@ export class ExtrasComponent implements OnInit {
         if (isConfirmed) {
           this.deleteExtraType(id);
         }
-      })
+      });
   }
 
   private deleteExtraType(id: number) {
@@ -73,9 +73,7 @@ export class ExtrasComponent implements OnInit {
       next: () => {
         this.extrasTypes$ = this.extrasTypesService.getExtrasTypes();
       },
-      error: (error) => {
-        console.log(error);
-      }
+      error: (error) => console.log(error)
     });
   }
 }

@@ -1,0 +1,37 @@
+.dialog-content {
+  padding-top: 15px !important;
+
+  .fields-container {
+    display: flex;
+    flex-direction: column;
+
+    .fields-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+
+      .price-field {
+        width: 212px;
+      }
+
+      input.type-number::-webkit-outer-spin-button,
+      input.type-number::-webkit-inner-spin-button {
+        display: none;
+      }
+
+      &:last-child {
+        justify-content: start;
+
+        .input-file-container {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+
+          .file-name {
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+  }
+}

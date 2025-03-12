@@ -1,0 +1,98 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding: 50px 150px;
+
+  .title {
+    display: flex;
+    justify-content: center;
+  }
+
+  .filters-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+
+    .custom-chip {
+      height: 60px;
+
+      .chip-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+        font-size: 16px;
+      }
+    }
+  }
+
+  .cars-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 70px;
+
+    .card {
+      background-color: white;
+
+      .card-image {
+        height: 200px;
+        width: 320px;
+      }
+
+      .card-content {
+        .specs-row {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 5px;
+
+          .spec-item {
+            display: flex;
+            gap: 5px;
+          }
+        }
+
+        .name-row {
+          display: flex;
+          margin: 30px 0px 10px 0px;
+          justify-content: space-between;
+        }
+      }
+
+      .choose-button {
+        width: 100%;
+      }
+    }
+
+    .no-data-container {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 50px 70px;
+
+    .cars-container {
+      justify-content: center;
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .container {
+    padding: 50px 45px;
+    gap: 30px;
+
+    .filters-container {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      gap: 20px;
+    }
+  }
+}
