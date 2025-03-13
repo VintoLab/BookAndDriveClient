@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="chosen-car-row">
+    <span class="row-title">The car you've chosen:</span>
+    <table mat-table [dataSource]="matTableDataSource" class="table">
+
+      <!-- Image Column -->
+      <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef>Image</th>
+        <td mat-cell *matCellDef="let element">
+          <img [src]="'data:image/jpg;base64,' + element.photo" alt="Car" class="cell-image">
+        </td>
+      </ng-container>
+
+      <!-- Brand Column -->
+      <ng-container matColumnDef="brand">
+        <th mat-header-cell *matHeaderCellDef>Brand</th>
+        <td mat-cell *matCellDef="let element">{{element.brand}}</td>
+      </ng-container>
+
+      <!-- Year Column -->
+      <ng-container matColumnDef="year">
+        <th mat-header-cell *matHeaderCellDef>Year</th>
+        <td mat-cell *matCellDef="let element">{{element.year}}</td>
+      </ng-container>
+
+      <!-- Type Column -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>Type</th>
+        <td mat-cell *matCellDef="let element">{{element.carTypeName}}</td>
+      </ng-container>
+
+      <!-- Seats Column -->
+      <ng-container matColumnDef="seats">
+        <th mat-header-cell *matHeaderCellDef>Seats</th>
+        <td mat-cell *matCellDef="let element">{{element.seats}}</td>
+      </ng-container>
+
+      <!-- Transmission Column -->
+      <ng-container matColumnDef="transmission">
+        <th mat-header-cell *matHeaderCellDef>Transmission</th>
+        <td mat-cell *matCellDef="let element">{{element.transmission}}</td>
+      </ng-container>
+
+      <!-- Price Column -->
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Price (per day)</th>
+        <td mat-cell *matCellDef="let element">{{element.price | currency : 'USD'}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="row"></tr>
+    </table>
+  </div>
+
+  <div class="date-range-selecting-row">
+    <div class="date-picker">
+      <mat-form-field>
+        <mat-label>Select a date range</mat-label>
+        <mat-date-range-input [formGroup]="dateRangeForm" [rangePicker]="picker" [min]="minStartDate" [max]="maxEndDate" disabled>
+          <input matStartDate formControlName="start" placeholder="Start date">
+          <input matEndDate formControlName="end" placeholder="End date" (dateChange)="dateRangeChange()">
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY - MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker disabled="false"></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+    <div class="additional-info">
+      <span>Number of days</span> 
+      <span>{{ numberOfDays }}</span>
+    </div>
+    <div class="additional-info">
+      <span>Total price of the car</span> 
+      <span>{{ totalPriceOfCar | currency : 'USD' }}</span>
+    </div>
+  </div>
+
+</div>

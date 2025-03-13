@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  .chosen-car-row {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .row-title {
+      text-align: center;
+      font-size: 18px;
+    }
+    
+    .table {
+      background-color: white;
+
+      .cell-image {
+        width: 120px;
+        height: 75px;
+      }
+    }
+  }
+
+  .date-range-selecting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    .additional-info {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+}
