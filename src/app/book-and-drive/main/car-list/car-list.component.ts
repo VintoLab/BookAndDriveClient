@@ -9,6 +9,7 @@ import { GetCarsQueryParams } from '../../../core/models/get-cars-query-params.m
 import { CommonModule } from '@angular/common';
 import { Car } from '../../admin/models/car/car.model';
 import { CarsService } from '../../../shared/services/cars.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-car-list',
@@ -25,7 +26,8 @@ import { CarsService } from '../../../shared/services/cars.service';
 })
 export class CarListComponent implements OnInit {
   carsService = inject(CarsService);
-  
+  router = inject(Router);
+
   carType = CarType;
   carTransmission = CarTransmission;
 
@@ -59,6 +61,10 @@ export class CarListComponent implements OnInit {
       this.queryParams.type = '';
       this.refetchData();
     }
+  }
+
+  navigateToOrderCreation(chosenCar: Car) {
+    this.router.navigate(['/order-creation'], { state: { data: chosenCar } });
   }
 
   private refetchData() {

@@ -1,0 +1,12 @@
+.container {
+  padding: 60px 160px;
+
+  .headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .mat-panel-content {
+    padding: 20px 50px;
+  }
+}

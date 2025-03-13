@@ -1,1 +1,61 @@
-<p>order-creation works!</p>
+<div class="container">
+  <mat-accordion class="headers-align">
+
+    <!-- first expansion panel -->
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Car</mat-panel-title>
+        <mat-panel-description>
+          Select the range of days you want to rent a car for
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="mat-panel-content">
+        {{ chosenCar.brand }} {{ chosenCar.year }}
+      </div>
+
+      <mat-action-row>
+        <button mat-button (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  
+    <!-- Second expansion panel -->
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Extras</mat-panel-title>
+        <mat-panel-description>
+          Choose extra items if you need
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+  
+      <div class="mat-panel-content">
+        expansion-panel-content
+      </div>
+
+      <mat-action-row>
+        <button mat-button (click)="prevStep()">Previous</button>
+        <button mat-button (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  
+    <!-- Third expansion panel -->
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Personal info</mat-panel-title>
+        <mat-panel-description>
+          Check or enter your personal info
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+  
+      <div class="mat-panel-content">
+        expansion-panel-content
+      </div>
+  
+      <mat-action-row>
+        <button mat-button (click)="prevStep()">Previous</button>
+        <button mat-button (click)="nextStep()">End</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+  </mat-accordion>
+</div>
