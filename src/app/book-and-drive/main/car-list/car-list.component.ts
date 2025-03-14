@@ -6,10 +6,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CarType } from '../../../core/enums/car-type.enum';
 import { CarTransmission } from '../../../core/enums/car-transmission.enum';
-import { GetCarsQueryParams } from '../../../core/models/get-cars-query-params.model';
+import { GetCarsQueryParams } from '../../../core/models/car/get-cars-query-params.model';
 import { CommonModule } from '@angular/common';
-import { Car } from '../../admin/models/car/car.model';
-import { CarsService } from '../../../shared/services/cars.service';
+import { Car } from '../../../core/models/car/car.model';
+import { CarsService } from '../../../core/services/cars.service';
 import { Router } from '@angular/router';
 
 @Component({

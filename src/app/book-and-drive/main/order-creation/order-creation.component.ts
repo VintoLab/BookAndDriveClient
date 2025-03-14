@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { Car } from '../../admin/models/car/car.model';
+import { Car } from '../../../core/models/car/car.model';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { RentalDateComponent } from "./rental-date/rental-date.component";

@@ -5,14 +5,14 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { Car } from '../../models/car/car.model';
+import { Car } from '../../../../core/models/car/car.model';
 import { CarTransmission } from '../../../../core/enums/car-transmission.enum';
 import { CarStatus } from '../../../../core/enums/car-status.enum';
 import { CarType } from '../../../../core/enums/car-type.enum';
 import { MatSelectModule } from '@angular/material/select';
 import { Regexp } from '../../../../core/constants/regexp';
+import { CarsService } from '../../../../core/services/cars.service';
 import { CarDTO } from '../../models/car/car.dto';
-import { CarsService } from '../../../../shared/services/cars.service';
 
 @Component({
   selector: 'app-new-car',

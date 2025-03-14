@@ -2,8 +2,8 @@ import { inject, Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment.development";
-import { GetCarsQueryParams } from "../../core/models/get-cars-query-params.model";
-import { Car } from "../../book-and-drive/admin/models/car/car.model";
+import { GetCarsQueryParams } from "../models/car/get-cars-query-params.model";
+import { Car } from "../models/car/car.model";
 import { CarDTO } from "../../book-and-drive/admin/models/car/car.dto";
 
 @Injectable({
