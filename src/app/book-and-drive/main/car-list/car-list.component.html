@@ -62,39 +62,46 @@
     </mat-chip-listbox>
   </div>
   <div class="cars-container">
-    @if (cars.length) {
-      @for (item of cars; track $index) {
-        <mat-card class="card" appearance="raised">
-          <img mat-card-image class="card-image"  [src]="'data:image/jpg;base64,' + item.photo" alt="Car">
-          <mat-card-content class="card-content">
-            <div class="specs-row">
-              <div class="spec-item">
-                <mat-icon>directions_car</mat-icon>
-                <span>{{ item.transmission }}</span>
+    @if (!isLoading) {
+      @if (cars.length) {
+        @for (item of cars; track $index) {
+          <mat-card class="card" appearance="raised">
+            <img mat-card-image class="card-image"  [src]="'data:image/jpg;base64,' + item.photo" alt="Car">
+            <mat-card-content class="card-content">
+              <div class="specs-row">
+                <div class="spec-item">
+                  <mat-icon>directions_car</mat-icon>
+                  <span>{{ item.transmission }}</span>
+                </div>
+                <div class="spec-item">
+                  <mat-icon>calendar_month</mat-icon>
+                  <span>{{ item.year }}</span>
+                </div>
+                <div class="spec-item">
+                  <mat-icon>airline_seat_recline_normal</mat-icon>
+                  <span>{{ item.seats }}</span>
+                </div>
               </div>
-              <div class="spec-item">
-                <mat-icon>calendar_month</mat-icon>
-                <span>{{ item.year }}</span>
+              <div class="name-row">
+                <span>{{ item.brand }}</span>
+                <span>{{ item.price | currency : 'USD' }}</span>
               </div>
-              <div class="spec-item">
-                <mat-icon>airline_seat_recline_normal</mat-icon>
-                <span>{{ item.seats }}</span>
-              </div>
-            </div>
-            <div class="name-row">
-              <span>{{ item.brand }}</span>
-              <span>{{ item.price | currency : 'USD' }}</span>
-            </div>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button class="choose-button" (click)="navigateToOrderCreation(item)">Choose</button>
-          </mat-card-actions>
-        </mat-card>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button class="choose-button" (click)="navigateToOrderCreation(item)">Choose</button>
+            </mat-card-actions>
+          </mat-card>
+        }
+      } 
+      @else {
+        <div class="no-data-container">
+          <span>No cars found</span>
+        </div>
       }
     } 
     @else {
-      <div class="no-data-container">
-        <span>No cars found</span>
+      <div class="spinner-container">
+        <mat-spinner [diameter]="50"></mat-spinner>
       </div>
     }
   </div>

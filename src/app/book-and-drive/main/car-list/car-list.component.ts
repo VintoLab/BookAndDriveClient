@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { MatChipSelectionChange, MatChipsModule } from '@angular/material/chips';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -19,6 +20,7 @@ import { Router } from '@angular/router';
     MatIconModule,
     CommonModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
     MatCardModule
   ],
   templateUrl: './car-list.component.html',
@@ -31,6 +33,7 @@ export class CarListComponent implements OnInit {
   carType = CarType;
   carTransmission = CarTransmission;
 
+  isLoading = false;
   queryParams: GetCarsQueryParams = {
     status: 1,
     transmission: '',
@@ -68,9 +71,16 @@ export class CarListComponent implements OnInit {
   }
 
   private refetchData() {
+    this.isLoading = true;
     this.carsService.getCars(this.queryParams).subscribe({
-      next: (data) => this.cars = data,
-      error: (error) => console.log(error.error)
+      next: (data) => {
+        this.cars = data;
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.log(error.error);
+        this.isLoading = false;
+      }
     });
   }
 }
